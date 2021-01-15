@@ -4,6 +4,7 @@ const cevapOlustur = function(res, status, content) {
     res
         .status(status)
         .json(content)
+
 }
 
 const mekanlariListele = async(req, res) => {
@@ -19,7 +20,8 @@ const mekanlariListele = async(req, res) => {
     var geoOptions = {
         distanceField: "mesafe",
         spherical: true,
-        key: "koordinatlar"
+        key: "koordinatlar",
+        maxDistance: 20000
     };
 
     if (!enlem || !boylam) {
