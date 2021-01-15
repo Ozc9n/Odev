@@ -4,7 +4,6 @@ const cevapOlustur = function(res, status, content) {
     res
         .status(status)
         .json(content)
-
 }
 
 const mekanlariListele = async(req, res) => {
@@ -42,7 +41,7 @@ const mekanlariListele = async(req, res) => {
                 adres: mekan.adres,
                 puan: mekan.puan,
                 imkanlar: mekan.imkanlar,
-                mesafe: mekan.mesafe.toFixed() + 'm'
+                mesafe: mekan.mesafe.toFixed()
             }
         });
         cevapOlustur(res, 200, mekanlar);
@@ -52,31 +51,31 @@ const mekanlariListele = async(req, res) => {
     }
 }
 
-const mekanEkle = function(req, res){
+const mekanEkle = function(req, res) {
     Mekan.create({
-      ad: req.body.ad,
-      adres: req.body.adres,
-      imkanlar: req.body.imkanlar.split(","),
-      koordinatlar: [parseFloat(req.body.enlem), parseFloat(req.body.boylam)],
-      saatler: [{
-        gunler: req.body.gunler1,
-        acilis: req.body.acilis1,
-        kapanis: req.body.kapanis1,
-        kapali: req.body.kapali1
-      },{
-        gunler: req.body.gunler2,
-        acilis: req.body.acilis2,
-        kapanis: req.body.kapanis2,
-        kapali: req.body.kapali2
-      }]
-    }, function(hata, mekan){
-      if(hata){
-        cevapOlustur(res, 400, hata);
-      } else {
-        cevapOlustur(res, 201, mekan);
-      }
+        ad: req.body.ad,
+        adres: req.body.adres,
+        imkanlar: req.body.imkanlar.split(","),
+        koordinatlar: [parseFloat(req.body.enlem), parseFloat(req.body.boylam)],
+        saatler: [{
+            gunler: req.body.gunler1,
+            acilis: req.body.acilis1,
+            kapanis: req.body.kapanis1,
+            kapali: req.body.kapali1
+        }, {
+            gunler: req.body.gunler2,
+            acilis: req.body.acilis2,
+            kapanis: req.body.kapanis2,
+            kapali: req.body.kapali2
+        }]
+    }, function(hata, mekan) {
+        if (hata) {
+            cevapOlustur(res, 400, hata);
+        } else {
+            cevapOlustur(res, 201, mekan);
+        }
     });
-  }
+}
 
 const mekanGetir = function(req, res) {
     if (req.params && req.params.mekanid) {

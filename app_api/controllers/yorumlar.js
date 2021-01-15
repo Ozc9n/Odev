@@ -123,10 +123,6 @@ const yorumGetir = function(req, res) {
 
     }
 
-
-
-
-
 }
 
 const yorumGuncelle = function(req, res) {
